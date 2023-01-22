@@ -27,20 +27,13 @@ export const todoSlice = createSlice({
         updateTodoItem: (state, action) => {
             let todo = action.payload.isDone
             if (todo) {
-                const index = state.value[0].data.indexOf(t => t.title == action.payload.title);
-
-                if (state.value[0].data.length > 0) {
-                    console.log('0');
-                    state.value[0].data.splice(index, 1)
-                }
+                const index = state.value[0].data.findIndex(t => t.title == action.payload.title);
+                state.value[0].data.splice(index, 1)
                 state.value[1].data.push({ title: action.payload.title, isDone: !action.payload.isDone })
 
             } else {
-                const index = state.value[1].data.indexOf(t => t.title == action.payload.title);
-                if (state.value[0].data.length > 0) {
-                    console.log('1');
-                    state.value[1].data.splice(index, 1)
-                }
+                const index = state.value[1].data.findIndex(t => t.title === action.payload.title);
+                state.value[1].data.splice(index, 1)
                 state.value[0].data.push({ title: action.payload.title, isDone: !action.payload.isDone })
             }
         },
