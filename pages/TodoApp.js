@@ -10,6 +10,11 @@ const TodoApp = () => {
   let state = useSelector(state => state);
   const dispatch = useDispatch();
 
+  let date = new Date()
+  let day = date.getDate();
+  let month = date.toLocaleString('en-En', { month: 'long' });
+  let year = date.getFullYear();
+  let today = `${month.toLocaleString()} ${day}, ${year}`
 
   const addTodo = () => {
     let obj = {
@@ -23,7 +28,7 @@ const TodoApp = () => {
   return (
     <SafeAreaView style={styles.content}>
       <View style={styles.date}>
-        <Text style={styles.text}>March 9,2023</Text>
+        <Text style={styles.text}>{today}</Text>
         <SectionList
           sections={state.todo.value}
           keyExtractor={(item, index) => item.title + index}

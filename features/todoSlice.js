@@ -31,6 +31,8 @@ export const todoSlice = createSlice({
                 state.value[0].data.splice(index, 1)
                 state.value[1].data.push({ title: action.payload.title, isDone: !action.payload.isDone })
 
+
+
             } else {
                 const index = state.value[1].data.findIndex(t => t.title === action.payload.title);
                 state.value[1].data.splice(index, 1)
